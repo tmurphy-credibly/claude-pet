@@ -1,0 +1,7 @@
+{
+  "uuid": "claude-pet@tmurphy-credibly.github.io",
+  "name": "Claude Pet",
+  "description": "A pixel pet in the corner of your screen that shows what Claude Code is doing. Pets, moods and rules are configurable.",
+  "shell-version": ["50"],
+  "version": 1
+}

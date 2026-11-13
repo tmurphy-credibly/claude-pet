@@ -1,0 +1,224 @@
+{
+  "name": "Crab",
+  "description": "Pixel crab in the Claude Code mascot style.",
+  "palette": {
+    "B": "#D97757",
+    "E": "#141413",
+    "t": "#2A5DB0",
+    "a": "#8A5A00",
+    "z": "#5B4B9A"
+  },
+  "moods": {
+    "idle": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBEBBBBBBEBBB....",
+          "..BBBBBEBBBBBBEBBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ]
+    },
+    "thinking": {
+      "frames": [
+        [
+          "....................tt",
+          "....................tt",
+          "......................",
+          "...................t..",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBEBBBBBBEBBBB..",
+          "....BBBBEBBBBBBEBBBB..",
+          "..BBBBBBBBBBBBBBBB....",
+          "..BBBBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ]
+    },
+    "working": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBEBBBBBBEBBB....",
+          ".BBBBBBEBBBBBBEBBBBBB.",
+          ".BBBBBBBBBBBBBBBBBBBB.",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ],
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".BBBBBBEBBBBBBEBBBBBB.",
+          ".BBBBBBEBBBBBBEBBBBBB.",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ],
+      "fps": 3
+    },
+    "needs": {
+      "frames": [
+        [
+          "..........aa..........",
+          "..........aa..........",
+          "..BB..............BB..",
+          "..BB......aa......BB..",
+          "..BB..............BB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "..BBBBBEEBBBBEEBBBBB..",
+          "....BBBEEBBBBEEBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ],
+        [
+          "..........aa..........",
+          "..BB......aa......BB..",
+          "..BB..............BB..",
+          "..BB......aa......BB..",
+          "..BB..............BB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "....BBBEEBBBBEEBBB....",
+          "....BBBEEBBBBEEBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ],
+      "fps": 3
+    },
+    "done": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "......................",
+          "..................BB..",
+          "..................BB..",
+          "....BBBBBBBBBBBBBBBB..",
+          "....BBBBBBBBBBBBBBBB..",
+          "....BBBEBBBBBBEBBBBB..",
+          "..BBBBEBEBBBBEBEBB....",
+          "..BBBBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ]
+    },
+    "error": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBEBEBBBBEBEBB....",
+          "....BBBEBBBBBBEBBB....",
+          "....BBEBEBBBBEBEBB....",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ]
+    },
+    "sleeping": {
+      "frames": [
+        [
+          "......................",
+          "..................zzz.",
+          "...................z..",
+          "..................zzz.",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "..BBBBEEEBBBBEEEBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ],
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          "..BBBBEEEBBBBEEEBBBB..",
+          "..BBBBBBBBBBBBBBBBBB..",
+          "....BBBBBBBBBBBBBB....",
+          "....BBBBBBBBBBBBBB....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B.....",
+          ".....B.B......B.B....."
+        ]
+      ],
+      "fps": 1
+    }
+  }
+}

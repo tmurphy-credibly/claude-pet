@@ -1,0 +1,303 @@
+{
+  "name": "Dog",
+  "description": "Tan puppy: pants and wags while working, perks its ears when it needs you.",
+  "palette": {
+    "B": "#D9A066",
+    "D": "#8B5A2B",
+    "M": "#F3E1C2",
+    "W": "#FBF8F2",
+    "E": "#141413",
+    "T": "#E77A8A",
+    "t": "#2A5DB0",
+    "a": "#8A5A00",
+    "h": "#E0546B",
+    "z": "#5B4B9A"
+  },
+  "moods": {
+    "idle": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ],
+      "fps": 1
+    },
+    "thinking": {
+      "frames": [
+        [
+          "....................tt",
+          "....................tt",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD.t.",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ]
+    },
+    "working": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          ".....BBBMMTTMMBBB.....",
+          "......BBBWTTWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBWEBBBBWEBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          ".....BBBMMTTMMBBB.....",
+          "......BBBWTTWBBB......",
+          "......BBBWWWWBBB..B...",
+          "......BBBWWWWBBB..B...",
+          ".....BBBBWWWWBBBB.B...",
+          ".....BBBBBBBBBBBBBB...",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ],
+      "fps": 4
+    },
+    "needs": {
+      "frames": [
+        [
+          "....DD..........DD..a.",
+          "....DD..........DD..a.",
+          "....DDBBBBBBBBBBDD..a.",
+          ".....BWEEBBBBWEEB.....",
+          ".....BEEEBBBBEEEB...a.",
+          ".....BEEEBBBBEEEB.....",
+          ".....BBBMMEEMMBBB.....",
+          ".....BBBMMMMMMBBB.....",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "....DD..........DD....",
+          "....DD..........DD....",
+          "....DDBBBBBBBBBBDD....",
+          ".....BWEEBBBBWEEB.....",
+          ".....BEEEBBBBEEEB.....",
+          ".....BEEEBBBBEEEB.....",
+          ".....BBBMMEEMMBBB.....",
+          ".....BBBMMMMMMBBB.....",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB..B...",
+          "......BBBWWWWBBB..B...",
+          ".....BBBBWWWWBBBB.B...",
+          ".....BBBBBBBBBBBBBB...",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ],
+      "fps": 4
+    },
+    "done": {
+      "frames": [
+        [
+          "...................h.h",
+          "...................hhh",
+          "...DDBBBBBBBBBBBBDD.h.",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBEBBBBBBEBBDD...",
+          "...DDBEBEBBBBEBEBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          ".....BBBMMTTMMBBB.....",
+          "......BBBWTTWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBEBBBBBBEBBDD...",
+          "...DDBEBEBBBBEBEBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          ".....BBBMMTTMMBBB.....",
+          "......BBBWTTWBBB......",
+          "......BBBWWWWBBB..B...",
+          "......BBBWWWWBBB..B...",
+          ".....BBBBWWWWBBBB.B...",
+          ".....BBBBBBBBBBBBBB...",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ],
+      "fps": 2
+    },
+    "error": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          ".....BBBBBBBBBBBB.....",
+          ".....BEBEBBBBEBEB.....",
+          "...DDBBEBBBBBBEBBDD...",
+          "...DDBEBEBBBBEBEBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          "...DD.BBBWWWWBBB.DD...",
+          "...DD.BBBWWWWBBB.DD...",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ]
+    },
+    "sleeping": {
+      "frames": [
+        [
+          "......................",
+          "..................zzz.",
+          "...DDBBBBBBBBBBBBDDz..",
+          "...DDBBBBBBBBBBBBDzzz.",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ],
+        [
+          "......................",
+          "......................",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBBBBBBBBBBBDD...",
+          "...DDBBEEBBBBEEBBDD...",
+          "...DDBBBMMEEMMBBBDD...",
+          "...DDBBBMMMMMMBBBDD...",
+          ".....BBBMMMMMMBBB.....",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB......",
+          "......BBBWWWWBBB...B..",
+          ".....BBBBWWWWBBBB..B..",
+          ".....BBBBBBBBBBBBBBB..",
+          ".....BBBBBBBBBBBB.....",
+          "......WWW....WWW......"
+        ]
+      ],
+      "fps": 1
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "pet": "robot",
+  "look": {
+    "pixelSize": 5,
+    "bubbleWidth": 320,
+    "showHint": false
+  },
+  "moods": {
+    "done": { "text": "Finished! Come look." },
+    "idle": { "after": { "seconds": 1800, "mood": "sleeping" } },
+    "testing": {
+      "label": "Testing",
+      "color": "#00AAFF",
+      "priority": 45,
+      "text": "Running tests…",
+      "sprite": "working",
+      "bubble": true,
+      "bob": true
+    }
+  },
+  "rules": [
+    { "event": "PreToolUse", "tool": "^Bash$", "match": "pytest|npm test", "mood": "testing", "text": "Testing {project}" },
+    { "event": "PreToolUse", "tool": "^(Read|Grep|Glob)$", "ignore": true }
+  ]
+}

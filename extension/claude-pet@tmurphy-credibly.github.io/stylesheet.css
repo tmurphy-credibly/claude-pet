@@ -1,0 +1,82 @@
+.claude-pet {
+  spacing: 8px;
+}
+
+.claude-pet-toolbar {
+  background-color: #141413;
+  border-radius: 10px;
+  padding: 3px;
+  spacing: 3px;
+}
+
+.claude-pet-tool {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  background-color: #2a2a28;
+  color: #faf9f5;
+}
+
+.claude-pet-tool:hover {
+  background-color: #3d3d3a;
+}
+
+.claude-pet-bubble-button {
+  padding: 0;
+  border-radius: 14px;
+}
+
+.claude-pet-bubble {
+  width: 280px;
+  background-color: #ffffff;
+  color: #141413;
+  border-radius: 14px;
+  padding: 12px 14px;
+  spacing: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.claude-pet-title-row {
+  spacing: 8px;
+}
+
+.claude-pet-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+}
+
+.claude-pet-title {
+  font-weight: bold;
+  font-size: 11pt;
+  color: #141413;
+}
+
+.claude-pet-text {
+  font-size: 10.5pt;
+  color: #3d3d3a;
+}
+
+.claude-pet-detail {
+  font-family: monospace;
+  font-size: 9pt;
+  color: #141413;
+  background-color: #f1efe8;
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+.claude-pet-sessions {
+  font-size: 9pt;
+  color: #5f5e5a;
+}
+
+.claude-pet-hint {
+  font-size: 8.5pt;
+  color: #5f5e5a;
+}
+
+.claude-pet-crab {
+  padding: 0;
+}

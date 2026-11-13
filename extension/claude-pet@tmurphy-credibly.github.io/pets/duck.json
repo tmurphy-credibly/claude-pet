@@ -1,0 +1,302 @@
+{
+  "name": "Duck",
+  "description": "Yellow duckling: waddles while working, quacks and flaps when it needs you.",
+  "palette": {
+    "Y": "#F7D046",
+    "D": "#E0A82E",
+    "O": "#F08A24",
+    "E": "#141413",
+    "W": "#FBF8F2",
+    "t": "#2A5DB0",
+    "a": "#8A5A00",
+    "h": "#E0546B",
+    "z": "#5B4B9A"
+  },
+  "moods": {
+    "idle": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYYEY.....",
+          "...........YYYYYYOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYYEY.....",
+          "...........YYYYYYOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYYEY.....",
+          "...........YYYYYYOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYEEY.....",
+          "...........YYYYYYOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ],
+      "fps": 1
+    },
+    "thinking": {
+      "frames": [
+        [
+          "....................tt",
+          "............YYYY....tt",
+          "...........YYYYEY.....",
+          "...........YYYYYYOOO..",
+          "...........YYYYYYOO...",
+          "...........YYYYYY.....",
+          ".YY........YYYYYY.....",
+          "..YYYYYYYYYYYY........",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ]
+    },
+    "working": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYYEY.....",
+          "...........YYYYYYOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          "......OOO..O..........",
+          "..........OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          "...........YYYYEY.....",
+          "......DDDD.YYYYYYOOO..",
+          ".YY...DDDD.YYYYYYOO...",
+          "..YYYYDDDDYYYYYYY.....",
+          "...YYYDDDDYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ],
+      "fps": 3
+    },
+    "needs": {
+      "frames": [
+        [
+          ".....................a",
+          ".....................a",
+          "............YYYY.....a",
+          "...........YYYWEY.....",
+          "...........YYYEEYOOO.a",
+          "......DDDD.YYYYYY.....",
+          ".YY...DDDD.YYYYYYOOO..",
+          "..YYYYDDDDYYYYYYY.....",
+          "...YYYDDDDYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYWEY.....",
+          "...........YYYEEYOOO..",
+          "...........YYYYYY.....",
+          ".YY........YYYYYYOOO..",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ],
+      "fps": 4
+    },
+    "done": {
+      "frames": [
+        [
+          "......................",
+          ".....h.h..............",
+          ".....hhh....YYYY......",
+          "......h....YYYYEY.....",
+          "...........YYYEYE.....",
+          "......DDDD.YYYYYYOOO..",
+          ".YY...DDDD.YYYYYYOO...",
+          "..YYYYDDDDYYYYYYY.....",
+          "...YYYDDDDYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYEY.....",
+          "...........YYYEYE.....",
+          "......DDDD.YYYYYYOOO..",
+          ".YY...DDDD.YYYYYYOO...",
+          "..YYYYDDDDYYYYYYY.....",
+          "...YYYDDDDYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ],
+      "fps": 2
+    },
+    "error": {
+      "frames": [
+        [
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYEYE.....",
+          "...........YYYYEY.....",
+          "...........YYYEYEOOO..",
+          ".YY........YYYYYYOO...",
+          "..YYYYYYYYYYYYYYY.....",
+          "...YYYYYYYYYYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ]
+    },
+    "sleeping": {
+      "frames": [
+        [
+          "......................",
+          "..................zzz.",
+          "...................z..",
+          "..................zzz.",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          ".YY........YYEEYY.....",
+          "..YYYYYYYYYYYYYYYOO...",
+          "...YYYYYYYYYYYYYY.....",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ],
+        [
+          "......................",
+          "......................",
+          "......................",
+          "......................",
+          "............YYYY......",
+          "...........YYYYYY.....",
+          ".YY........YYEEYY.....",
+          "..YYYYYYYYYYYYYYYOO...",
+          "...YYYYYYYYYYYYYY.....",
+          "...YYYDDDDDDYYYY......",
+          "...YYYDDDDDDYYYY......",
+          "...YYYYYYYYYYYYY......",
+          "...YYYYYYYYYYYYY......",
+          ".....YYYYYYYYY........",
+          ".......O...O..........",
+          "......OOO.OOO........."
+        ]
+      ],
+      "fps": 1
+    }
+  }
+}
