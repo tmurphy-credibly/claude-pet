@@ -202,6 +202,7 @@ export default class ClaudePetExtension extends Extension {
         });
         // The shell can destroy chrome on exit before disable() runs.
         this._box.connect('destroy', () => {
+            this._endGrab();
             this._stopTimers();
             this._box = this._crab = null;
         });
@@ -212,8 +213,8 @@ export default class ClaudePetExtension extends Extension {
 
         this._toolbar = new St.BoxLayout({style_class: 'claude-pet-toolbar'});
         this._toolbar.add_child(this._toolButton('view-conceal-symbolic', 'Hide pet', () => this._setToggle('hidden', true)));
-        this._toolbar.add_child(this._toolButton('object-flip-horizontal-symbolic', 'Switch corner', () =>
-            this._setToggle('side', this._toggles.side === 'left' ? 'right' : 'left')));
+        this._toolbar.add_child(this._toolButton('object-flip-horizontal-symbolic', 'Snap to the other corner', () =>
+            this._snapToCorner(this._onRightHalf() ? 'left' : 'right')));
         this._box.add_child(this._toolbar);
 
         this._bubble = new St.BoxLayout({
@@ -242,17 +243,17 @@ export default class ClaudePetExtension extends Extension {
 
         this._crab = new St.DrawingArea();
         this._crab.connect('repaint', area => this._paint(area, true));
-        this._crabButton = new St.Button({
+        // Not an St.Button: a press may become a drag, so clicks are told apart on release.
+        this._crabButton = new St.Bin({
             style_class: 'claude-pet-crab',
             child: this._crab,
-            accessible_name: 'Claude pet',
+            reactive: true,
+            track_hover: true,
+            accessible_name: 'Claude pet: click to open the terminal, drag to move',
         });
-        this._crabButton.connect('clicked', () => {
-            if (this._toggles.hidden)
-                this._setToggle('hidden', false);
-            else
-                this._raiseTerminal();
-        });
+        this._crabButton.connect('button-press-event', (_actor, event) => this._onPress(event));
+        this._crabButton.connect('motion-event', (_actor, event) => this._onMotion(event));
+        this._crabButton.connect('button-release-event', (_actor, event) => this._onRelease(event));
         this._box.add_child(this._crabButton);
 
         Main.layoutManager.addChrome(this._box, {trackFullscreen: true});
@@ -278,10 +279,11 @@ export default class ClaudePetExtension extends Extension {
         this._tuckItem.connect('toggled', (_item, state) => this._setToggle('hidden', state));
         menu.addMenuItem(this._tuckItem);
 
-        this._cornerItem = new PopupMenu.PopupMenuItem('');
-        this._cornerItem.connect('activate', () =>
-            this._setToggle('side', this._toggles.side === 'left' ? 'right' : 'left'));
-        menu.addMenuItem(this._cornerItem);
+        this._monitorItem = new PopupMenu.PopupMenuItem('Move to next monitor');
+        this._monitorItem.connect('activate', () => this._moveToNextMonitor());
+        menu.addMenuItem(this._monitorItem);
+        menu.addAction('Snap to bottom-left corner', () => this._snapToCorner('left'));
+        menu.addAction('Snap to bottom-right corner', () => this._snapToCorner('right'));
 
         this._petMenu = new PopupMenu.PopupSubMenuMenuItem('Pet');
         menu.addMenuItem(this._petMenu);
@@ -315,8 +317,7 @@ export default class ClaudePetExtension extends Extension {
         this._statusItem.label.text = top ? `${label} · ${top.project}${others}` : 'No Claude sessions running';
         this._showItem.setToggleState(this._toggles.shown);
         this._tuckItem.setToggleState(this._toggles.hidden);
-        this._cornerItem.label.text = this._toggles.side === 'left'
-            ? 'Move to bottom-right corner' : 'Move to bottom-left corner';
+        this._monitorItem.visible = Main.layoutManager.monitors.length > 1;
 
         this._petMenu.menu.removeAll();
         for (const name of this._listPets()) {
@@ -408,14 +409,12 @@ export default class ClaudePetExtension extends Extension {
         const moodCfg = moods[mood];
         const hidden = this._toggles.hidden;
         const shown = this._toggles.shown;
-        const align = this._toggles.side === 'left' ? Clutter.ActorAlign.START : Clutter.ActorAlign.END;
+        const dragging = Boolean(this._drag?.moved);
 
         // Hide the children, not the box: trackFullscreen manages the box's own visibility.
         this._crabButton.visible = shown;
-        this._toolbar.visible = shown && !hidden && this._hover;
-        this._bubbleButton.visible = shown && !hidden && (this._hover || Boolean(top && moodCfg.bubble));
-        for (const actor of [this._toolbar, this._bubbleButton, this._crabButton])
-            actor.x_align = align;
+        this._toolbar.visible = shown && !hidden && !dragging && this._hover;
+        this._bubbleButton.visible = shown && !hidden && !dragging && (this._hover || Boolean(top && moodCfg.bubble));
 
         this._dot.style = `background-color: ${moodCfg.color};`;
         this._title.text = top ? `${moodCfg.label ?? mood} · ${top.project}` : (moodCfg.label ?? mood);
@@ -435,29 +434,168 @@ export default class ClaudePetExtension extends Extension {
         this._place();
     }
 
+    // ---------- position ----------
+    // The pet's spot = the top-left of the pet itself (not the box around it), in
+    // stage coordinates, saved in state.json as "pos". The bubble and toolbar are
+    // arranged around it: toward the middle of its monitor, below it near the top.
+
+    _crabSize() {
+        const [, w] = this._crabButton.get_preferred_width(-1);
+        const [, h] = this._crabButton.get_preferred_height(w);
+        return [w, h];
+    }
+
+    _monitorIndexAt(x, y) {
+        return Main.layoutManager.monitors.findIndex(m =>
+            x >= m.x && x < m.x + m.width && y >= m.y && y < m.y + m.height);
+    }
+
+    _cornerPos(index, side) {
+        const {margin} = this._config.look;
+        const wa = Main.layoutManager.getWorkAreaForMonitor(index);
+        const [w, h] = this._crabSize();
+        return {
+            x: side === 'left' ? wa.x + margin : wa.x + wa.width - w - margin,
+            y: wa.y + wa.height - h - margin,
+        };
+    }
+
+    // The saved spot if it is on a connected monitor, else a corner of the primary monitor.
+    _petSpot() {
+        const [w, h] = this._crabSize();
+        const pos = this._dragPos ?? this._toggles.pos;
+        if (pos) {
+            const index = this._monitorIndexAt(pos.x + w / 2, pos.y + h / 2);
+            if (index >= 0)
+                return {index, x: pos.x, y: pos.y};
+        }
+        const index = Main.layoutManager.primaryIndex;
+        return {index, ...this._cornerPos(index, this._toggles.side)};
+    }
+
+    _onRightHalf() {
+        const {index, x} = this._petSpot();
+        const m = Main.layoutManager.monitors[index];
+        return x + this._crabSize()[0] / 2 > m.x + m.width / 2;
+    }
+
+    _snapToCorner(side) {
+        const {index} = this._petSpot();
+        this._toggles.side = side;
+        this._toggles.hidden = false;
+        this._setToggle('pos', this._cornerPos(index, side));
+    }
+
+    _moveToNextMonitor() {
+        const monitors = Main.layoutManager.monitors;
+        if (monitors.length < 2)
+            return;
+        const {index, x, y} = this._petSpot();
+        const from = monitors[index];
+        const to = monitors[(index + 1) % monitors.length];
+        const [w, h] = this._crabSize();
+        const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+        // Same relative spot on the next monitor.
+        this._setToggle('pos', {
+            x: Math.round(clamp(to.x + ((x - from.x) / from.width) * to.width, to.x, to.x + to.width - w)),
+            y: Math.round(clamp(to.y + ((y - from.y) / from.height) * to.height, to.y, to.y + to.height - h)),
+        });
+    }
+
     _place() {
         if (!this._box || !Main.layoutManager.primaryMonitor)
             return;
 
-        const {margin} = this._config.look;
-        const monitor = Main.layoutManager.primaryMonitor;
-        const workArea = Main.layoutManager.getWorkAreaForMonitor(Main.layoutManager.primaryIndex);
-        const [, width] = this._box.get_preferred_width(-1);
-        const [, height] = this._box.get_preferred_height(width);
+        const spot = this._petSpot();
+        const monitor = Main.layoutManager.monitors[spot.index];
+        const [cw, ch] = this._crabSize();
 
-        const x = this._toggles.side === 'left'
-            ? workArea.x + margin
-            : workArea.x + workArea.width - width - margin;
+        // Bubble and toolbar open toward the middle of the screen.
+        const align = this._onRightHalf() ? Clutter.ActorAlign.END : Clutter.ActorAlign.START;
+        for (const actor of [this._toolbar, this._bubbleButton, this._crabButton])
+            actor.x_align = align;
 
-        let y;
+        let crabY = spot.y;
         if (this._toggles.hidden) {
-            // Peek over the bottom edge; rise higher for the most urgent moods.
+            // Peek over the bottom edge of its monitor; rise higher for the most urgent moods.
             const urgent = this._config.moods[this._mood].priority >= this._config.moods.needs?.priority;
-            y = monitor.y + monitor.height - Math.round(this._crab.height * (urgent ? 0.65 : 0.45));
-        } else {
-            y = workArea.y + workArea.height - height - margin;
+            crabY = monitor.y + monitor.height - Math.round(ch * (urgent ? 0.65 : 0.45));
         }
+
+        const [, bw] = this._box.get_preferred_width(-1);
+        const [, bh] = this._box.get_preferred_height(bw);
+        const above = bh - ch;
+        // Not enough room above (pet near the top): put the bubble below the pet instead.
+        const below = !this._toggles.hidden && above > 0 && crabY - above < monitor.y;
+        const wanted = below ? 0 : this._box.get_n_children() - 1;
+        if (this._box.get_children().indexOf(this._crabButton) !== wanted)
+            this._box.set_child_at_index(this._crabButton, wanted);
+
+        const x = align === Clutter.ActorAlign.END ? spot.x + cw - bw : spot.x;
+        const y = below ? crabY : crabY - above;
         this._box.set_position(Math.round(x), Math.round(y));
+    }
+
+    // ---------- dragging ----------
+
+    _onPress(event) {
+        if (event.get_button() !== Clutter.BUTTON_PRIMARY)
+            return Clutter.EVENT_PROPAGATE;
+        const [px, py] = event.get_coords();
+        const {x, y} = this._petSpot();
+        this._drag = {px, py, x, y, moved: false};
+        this._grab = global.stage.grab(this._crabButton);
+        return Clutter.EVENT_STOP;
+    }
+
+    _onMotion(event) {
+        if (!this._drag)
+            return Clutter.EVENT_PROPAGATE;
+        const [px, py] = event.get_coords();
+        const dx = px - this._drag.px;
+        const dy = py - this._drag.py;
+        if (!this._drag.moved && Math.hypot(dx, dy) < 5)
+            return Clutter.EVENT_STOP; // still a click
+        if (!this._drag.moved) {
+            this._drag.moved = true;
+            this._toggles.hidden = false; // dragging a tucked pet brings it out
+            this._updateUi();
+        }
+
+        // Keep the pet whole on the monitor under the pointer.
+        const index = this._monitorIndexAt(px, py);
+        const m = Main.layoutManager.monitors[index >= 0 ? index : Main.layoutManager.primaryIndex];
+        const [w, h] = this._crabSize();
+        const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+        this._dragPos = {
+            x: Math.round(clamp(this._drag.x + dx, m.x, m.x + m.width - w)),
+            y: Math.round(clamp(this._drag.y + dy, m.y, m.y + m.height - h)),
+        };
+        this._place();
+        return Clutter.EVENT_STOP;
+    }
+
+    _onRelease(event) {
+        if (!this._drag || event.get_button() !== Clutter.BUTTON_PRIMARY)
+            return Clutter.EVENT_PROPAGATE;
+        this._endGrab();
+        const {moved} = this._drag;
+        this._drag = null;
+        if (moved) {
+            const pos = this._dragPos;
+            this._dragPos = null;
+            this._setToggle('pos', pos);
+        } else if (this._toggles.hidden) {
+            this._setToggle('hidden', false);
+        } else {
+            this._raiseTerminal();
+        }
+        return Clutter.EVENT_STOP;
+    }
+
+    _endGrab() {
+        this._grab?.dismiss();
+        this._grab = null;
     }
 
     // desktop = the big pet (glow + bob); false = the small top-bar pet.
@@ -583,7 +721,7 @@ export default class ClaudePetExtension extends Extension {
     }
 
     _loadToggles() {
-        const defaults = {shown: true, hidden: false, side: 'right'};
+        const defaults = {shown: true, hidden: false, side: 'right', pos: null};
         try {
             return {...defaults, ...readJson(TOGGLES_FILE)};
         } catch (e) {

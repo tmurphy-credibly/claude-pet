@@ -54,11 +54,13 @@ To update, `git pull`. Pet and config changes apply immediately; extension code 
 
 ## Using it
 
-**On the desktop.** The pet sits in the bottom-right corner. When Claude needs you, finishes, or hits an error, a speech bubble says so: which project, and what it wants, such as "Can I run Bash?" with the command.
+**On the desktop.** The pet starts in the bottom-right corner. When Claude needs you, finishes, or hits an error, a speech bubble says so: which project, and what it wants, such as "Can I run Bash?" with the command.
 
+- **Drag** the pet anywhere, on any monitor. It remembers the spot. The bubble opens toward the middle of the screen, and below the pet when it's near the top.
 - **Click** the pet or the bubble to bring up your terminal. It picks the most recently used terminal window, preferring one whose title contains the project name.
-- **Hover** to see the bubble any time, plus a small toolbar to tuck the pet away or switch corners.
-- **Tucked away**, the pet peeks over the bottom edge of the screen and rises when something urgent happens. Click it to bring it back.
+- **Hover** to see the bubble any time, plus a small toolbar to tuck the pet away or snap it to the other corner.
+- **Tucked away**, the pet peeks over the bottom edge of its monitor and rises when something urgent happens. Click or drag it to bring it back.
+- **Monitor unplugged?** The pet moves to your main monitor, and returns to its spot when the monitor is back.
 
 **In the top bar.** A tiny copy of the pet shows the current mood and opens a menu:
 
@@ -67,7 +69,8 @@ To update, `git pull`. Pet and config changes apply immediately; extension code 
 | Status line | What the most urgent session is doing, and how many others are running |
 | Show pet on desktop | Hide or show the desktop pet; the top-bar pet stays |
 | Tuck at screen edge | Peek-over-the-edge mode |
-| Move to bottom-left / bottom-right corner | Switch corners |
+| Move to next monitor | Same spot on your next monitor (shown with 2+ monitors) |
+| Snap to bottom-left / bottom-right corner | Back to a corner of the pet's current monitor |
 | Pet ▸ | Pick any built-in or custom pet |
 | Edit config… | Opens `~/.config/claude-pet/config.json` (creates it if needed) |
 | Open pets folder | Opens `~/.config/claude-pet/pets/` |
@@ -309,7 +312,7 @@ Claude Code ──hook──► hooks/claude-pet-hook.sh ──► ~/.cache/clau
 | --- | --- |
 | `~/.cache/claude-pet/sessions/<id>.json` | The hook: the latest event per session (removed on `SessionEnd`) |
 | `~/.config/claude-pet/config.json`, `pets/` | You |
-| `~/.config/claude-pet/state.json` | The extension: shown / tucked / corner |
+| `~/.config/claude-pet/state.json` | The extension: shown / tucked / position |
 
 ## Troubleshooting
 
