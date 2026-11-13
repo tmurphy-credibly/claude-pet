@@ -18,7 +18,7 @@ function test(name, fn) {
     }
 }
 
-const ev = (event, extra = {}) => ({event, tool: '', type: '', message: '', detail: '', project: 'credibly-dev', ts: 1000, ...extra});
+const ev = (event, extra = {}) => ({event, tool: '', type: '', message: '', detail: '', project: 'my-project', ts: 1000, ...extra});
 const {config} = buildConfig({});
 
 test('defaults map the standard events', () => {
@@ -63,7 +63,7 @@ test('user rules win, custom moods work, templates fill', () => {
         rules: [{event: 'PreToolUse', tool: '^Bash$', match: 'pytest', mood: 'testing', text: 'Testing {project}'}],
     });
     const s = resolveEvent(c, ev('PreToolUse', {tool: 'Bash', detail: 'uv run pytest -x'}), null);
-    assert.deepEqual([s.mood, s.text], ['testing', 'Testing credibly-dev']);
+    assert.deepEqual([s.mood, s.text], ['testing', 'Testing my-project']);
     assert.equal(resolveEvent(c, ev('PreToolUse', {tool: 'Bash', detail: 'ls'}), null).mood, 'working');
     assert.equal(c.rules.length, config.rules.length + 1);
 });

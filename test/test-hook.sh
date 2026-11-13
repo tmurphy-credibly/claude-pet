@@ -16,12 +16,12 @@ expect() { # field expected label
   if [ "$got" == "$2" ]; then echo "ok   $3"; else echo "FAIL $3: .$1 = '$got', want '$2'"; fail=1; fi
 }
 
-base='"session_id":"abc-123","cwd":"/home/me/code/credibly-dev"'
+base='"session_id":"abc-123","cwd":"/home/me/code/my-project"'
 
 out="$(send "{$base,\"hook_event_name\":\"SessionStart\"}")"
 [ -z "$out" ] && echo "ok   hook prints nothing" || { echo "FAIL hook printed: $out"; fail=1; }
 expect event SessionStart "event recorded"
-expect project credibly-dev "project from cwd"
+expect project my-project "project from cwd"
 expect session_id abc-123 "session id recorded"
 
 send "{$base,\"hook_event_name\":\"PreToolUse\",\"tool_name\":\"Bash\",\"tool_input\":{\"command\":\"uv run --all-groups pytest\"}}"
