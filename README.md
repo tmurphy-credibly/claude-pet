@@ -362,3 +362,7 @@ node test/test-config.mjs               # rules, moods, decay, config errors, ev
 | Extension code (`extension.js`, `config.js`, CSS) | Log out and back in, or test in a nested shell: `dbus-run-session -- gnome-shell --devkit --wayland` |
 
 Logs: `journalctl --user -f -o cat /usr/bin/gnome-shell | grep -i claude-pet`.
+
+## License
+
+[MIT](LICENSE)

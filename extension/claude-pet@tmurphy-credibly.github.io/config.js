@@ -142,6 +142,19 @@ export function effectiveState(config, state, now) {
 
 // ---------- pets ----------
 
+// Used only when no pet file can be loaded at all, so the extension still starts.
+export const FALLBACK_PET = {
+    name: 'Fallback',
+    palette: {B: '#D97757', E: '#141413'},
+    moods: {idle: {frames: [[
+        '..BBBBBB..',
+        '.BBBBBBBB.',
+        '.BBEBBEBB.',
+        '.BBBBBBBB.',
+        '..B.BB.B..',
+    ]]}},
+};
+
 // Pet JSON: {name, palette: {char: "#hex"}, moods: {mood: {frames: [[row, ...], ...], fps}}}.
 // '.' and ' ' are transparent; '*' is the current mood's color.
 export function parsePet(json) {

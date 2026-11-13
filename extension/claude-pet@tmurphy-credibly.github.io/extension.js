@@ -17,7 +17,7 @@ import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
-import {buildConfig, resolveEvent, effectiveState, parsePet, spriteFor, frameIndex} from './config.js';
+import {DEFAULTS, FALLBACK_PET, buildConfig, resolveEvent, effectiveState, parsePet, spriteFor, frameIndex} from './config.js';
 
 const STATE_DIR = GLib.build_filenamev([GLib.get_user_cache_dir(), 'claude-pet', 'sessions']);
 const CONFIG_DIR = GLib.build_filenamev([GLib.get_user_config_dir(), 'claude-pet']);
@@ -135,22 +135,39 @@ export default class ClaudePetExtension extends Extension {
 
     // Loads config.json + the chosen pet. On error keeps the last good setup
     // (or the defaults on first load) and says why in a notification.
+    // Never throws: a bad config keeps the last good one (or the defaults), and a pet
+    // that can't load keeps the current pet (or a built-in fallback), so enable()
+    // always succeeds and the notification says what went wrong.
     _loadConfig() {
+        let config;
         try {
             const user = GLib.file_test(CONFIG_FILE, GLib.FileTest.EXISTS) ? readJson(CONFIG_FILE) : {};
-            const {config, warnings} = buildConfig(user);
-            const pet = this._loadPet(config.pet);
-            this._config = config;
-            this._pet = pet;
-            this._lastConfigError = null;
-            for (const w of warnings)
+            const result = buildConfig(user);
+            config = result.config;
+            for (const w of result.warnings)
                 console.warn(`claude-pet: ${w}`);
         } catch (e) {
             this._reportConfigError(e.message);
-            if (!this._config) {
-                this._config = buildConfig({}).config;
-                this._pet = this._loadPet(this._config.pet);
-            }
+            config = this._config ?? buildConfig({}).config;
+        }
+
+        let pet;
+        try {
+            pet = this._loadPet(config.pet);
+            this._lastConfigError = null;
+        } catch (e) {
+            this._reportConfigError(e.message);
+            pet = this._pet ?? this._fallbackPet();
+        }
+        this._config = config;
+        this._pet = pet;
+    }
+
+    _fallbackPet() {
+        try {
+            return this._loadPet(DEFAULTS.pet);
+        } catch (e) {
+            return parsePet(FALLBACK_PET);
         }
     }
 

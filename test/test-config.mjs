@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {
-    buildConfig, resolveEvent, effectiveState, parsePet, spriteFor, frameIndex, fill,
+    FALLBACK_PET, buildConfig, resolveEvent, effectiveState, parsePet, spriteFor, frameIndex, fill,
 } from '../extension/claude-pet@tmurphy-credibly.github.io/config.js';
 
 const ext = fileURLToPath(new URL('../extension/claude-pet@tmurphy-credibly.github.io/', import.meta.url));
@@ -121,6 +121,10 @@ test('sprite fallback and frame timing', () => {
     assert.equal(spriteFor(pet, c, 'needs'), pet.moods.idle);
     assert.equal(frameIndex(pet.moods.working, 0), 0);
     assert.equal(frameIndex(pet.moods.working, 600), 1);
+});
+
+test('fallback pet parses', () => {
+    assert.ok(parsePet(FALLBACK_PET).moods.idle);
 });
 
 process.exit(failed ? 1 : 0);
